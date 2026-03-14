@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 abstract class Room {
     String type;
     int beds;
@@ -44,10 +46,6 @@ class SuiteRoom extends Room {
 
 public class UseCase2RoomInitialization {
 
-    static int singleAvailable = 5;
-    static int doubleAvailable = 3;
-    static int suiteAvailable = 2;
-
     public static void main(String[] args) {
 
         Room r1 = new SingleRoom();
@@ -55,12 +53,19 @@ public class UseCase2RoomInitialization {
         Room r3 = new SuiteRoom();
 
         r1.display();
-        System.out.println("Available: " + singleAvailable);
-
         r2.display();
-        System.out.println("Available: " + doubleAvailable);
-
         r3.display();
-        System.out.println("Available: " + suiteAvailable);
+
+        System.out.println("\nRoom Availability:");
+
+        HashMap<String, Integer> inventory = new HashMap<>();
+
+        inventory.put("Single", 5);
+        inventory.put("Double", 3);
+        inventory.put("Suite", 2);
+
+        for (String room : inventory.keySet()) {
+            System.out.println(room + " Rooms Available: " + inventory.get(room));
+        }
     }
 }
