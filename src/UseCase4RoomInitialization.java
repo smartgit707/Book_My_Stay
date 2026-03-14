@@ -44,28 +44,38 @@ class SuiteRoom extends Room {
     }
 }
 
-public class UseCase2RoomInitialization {
+public class UseCase4RoomInitialization {
 
     public static void main(String[] args) {
+
+        HashMap<String, Integer> inventory = new HashMap<>();
+
+        inventory.put("Single", 5);
+        inventory.put("Double", 0);
+        inventory.put("Suite", 2);
 
         Room r1 = new SingleRoom();
         Room r2 = new DoubleRoom();
         Room r3 = new SuiteRoom();
 
-        r1.display();
-        r2.display();
-        r3.display();
+        System.out.println("Available Rooms:\n");
 
-        System.out.println("\nRoom Availability:");
+        if (inventory.get("Single") > 0) {
+            r1.display();
+            System.out.println("Available: " + inventory.get("Single"));
+            System.out.println();
+        }
 
-        HashMap<String, Integer> inventory = new HashMap<>();
+        if (inventory.get("Double") > 0) {
+            r2.display();
+            System.out.println("Available: " + inventory.get("Double"));
+            System.out.println();
+        }
 
-        inventory.put("Single", 5);
-        inventory.put("Double", 3);
-        inventory.put("Suite", 2);
-
-        for (String room : inventory.keySet()) {
-            System.out.println(room + " Rooms Available: " + inventory.get(room));
+        if (inventory.get("Suite") > 0) {
+            r3.display();
+            System.out.println("Available: " + inventory.get("Suite"));
+            System.out.println();
         }
     }
 }
