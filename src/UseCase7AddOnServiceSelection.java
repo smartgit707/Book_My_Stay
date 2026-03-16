@@ -10,7 +10,7 @@ class Reservation {
     }
 }
 
-public class UseCase6RoomAllocationService {
+public class UseCase7AddOnServiceSelection {
 
     public static void main(String[] args) {
 
@@ -20,7 +20,7 @@ public class UseCase6RoomAllocationService {
         inventory.put("Double", 1);
         inventory.put("Suite", 1);
 
-        // Queue for booking requests (FIFO)
+        // Queue for booking requests
         Queue<Reservation> bookingQueue = new LinkedList<>();
 
         bookingQueue.add(new Reservation("Guest1", "Single"));
@@ -43,7 +43,7 @@ public class UseCase6RoomAllocationService {
 
             if (inventory.get(type) > 0) {
 
-                String roomId = type + "-R" + roomCounter++;
+                String roomId = type + "-" + roomCounter++;
 
                 allocatedRooms.get(type).add(roomId);
 
@@ -60,5 +60,29 @@ public class UseCase6RoomAllocationService {
                 System.out.println();
             }
         }
+
+        // -----------------------------
+        // Use Case 7: Add-On Service Selection
+        // -----------------------------
+
+        HashMap<String, List<Double>> addOnServices = new HashMap<>();
+
+        String reservationId = "Single-1";
+
+        List<Double> services = new ArrayList<>();
+        services.add(500.0);
+        services.add(1000.0);
+
+        addOnServices.put(reservationId, services);
+
+        double totalCost = 0;
+
+        for (double cost : addOnServices.get(reservationId)) {
+            totalCost += cost;
+        }
+
+        System.out.println("Add-On Service Selection");
+        System.out.println("Reservation ID: " + reservationId);
+        System.out.println("Total Add-On Cost: " + totalCost);
     }
 }
